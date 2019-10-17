@@ -1,3 +1,7 @@
+#Autoras
+#Jessica Antunes - 619612
+#Leticia Amaral da Cunha - 628190
+
 import json
 #Este metodo compacta a mensagem
 def pack(data: dict):

@@ -1,5 +1,6 @@
-#devemos utilizar semaforos pra fazer bloqueante??
-#criar um servidor http e fazer linda space com wrapper rest??
+#Autoras
+#Jessica Antunes - 619612
+#Leticia Amaral da Cunha - 628190
 
 import http.server
 import socketserver
@@ -32,7 +33,6 @@ elif array_options[option_input-1] == 'rd':
 	tupla = pack({'operacao': array_options[option_input-1], 'cliente': nomeCliente, 'topico': topico, 'mensagem': "message"})
 
 #Envio dos dados do usuário
-mensagemcliente = array_options[option_input-1]
 bytesenviar = tupla
 
 #Criacao do socket para envio da informacoes 

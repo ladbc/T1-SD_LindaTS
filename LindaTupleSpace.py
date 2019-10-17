@@ -11,7 +11,6 @@ from main import pack, unpack
 
 defPort = 8080
 
-
 nomeCliente = input("Qual o seu nome?: \n")
 print("Entre com o seu comando: ")
 array_options = ["out", "in", "rd"]
@@ -39,5 +38,3 @@ socketcliente = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 socketcliente.sendto(bytesenviar, endrServidor)
 mensagemservidor = socketcliente.recvfrom(bufferSize)
 print(mensagemservidor[0].decode('utf-8'))
-#msg = "Mensagem do SErvidor".format(mensagemservidor[0])
-#print(msg)

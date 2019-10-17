@@ -29,3 +29,16 @@ class Client():
   def rd_tuple(self, topico):     #Operação de cópia do template de tupla no tuple space BLOQUEANTE
     #Obtenção de conteúdo por tópicos
     print("ai")
+
+mensagemcliente       = "out"
+bytesenviar         = str.encode(mensagemcliente)
+endrServidor  = ("127.0.0.1", 8080)
+bufferSize          = 1024
+
+# Create a UDP socket at client side
+socketcliente = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+# Send to server using created UDP socket
+socketcliente.sendto(bytesenviar, endrServidor)
+mensagemservidor = socketcliente.recvfrom(bufferSize)
+msg = "Mensagem do SErvidor".format(mensagemservidor[0])
+print(msg)

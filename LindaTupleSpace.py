@@ -29,6 +29,7 @@ class Servidor(object):
 # bind the socket to a public host, and a well-known port
 serversocket.bind((socket.gethostname(), 80))
 # become a server socket
+yt fytfuyu
 serversocket.listen(5)
 		
 	def atividade(comando):		#Definição do recebimento de atividade no servidor pelo cliente???

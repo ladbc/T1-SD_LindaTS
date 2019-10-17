@@ -6,6 +6,8 @@ import socketserver
 import os
 import sys
 import socket
+import json
+from main import pack, unpack
 
 defPort = 8080
 
@@ -23,8 +25,15 @@ def rd_tuple(self, topico):     #Operacao de copia do template de tupla no tuple
   print("ai")
   return
 
-mensagemcliente       = "out"
-bytesenviar         = str.encode(mensagemcliente)
+nomeCliente = input("Qual o seu nome?: \n")
+print("Entre com o seu comando: ")
+array_options = ["out", "in", "rd"]
+option_input = int(input("1 - out \n2 - in \n3 - rd \n => "))
+
+message = pack({'operacao': array_options[option_input-1], 'cliente': nomeCliente, 'topic': "topico", 'message': "mensagem"})
+
+mensagemcliente = array_options[option_input-1]
+bytesenviar = message
 endrServidor  = ("127.0.0.1", 8080)
 bufferSize          = 1024
 

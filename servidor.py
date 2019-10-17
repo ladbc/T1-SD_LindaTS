@@ -14,11 +14,13 @@ bytesToSend = str.encode(msgFromServer)
 
 def atividadeTS(comando): #Definicao do recebimento de atividade no servidor pelo cliente???
 	if comando == 'out':
-		print('OLHA AI MENINA')
+		print('Operacao de insercao na TS')
 		return		
 	if comando == 'in' :
+		print('Operacao de retirada da TS')
 		return
 	if comando == 'rd' :
+		print('Operacao de leitura da TS')
 		return
 	else:
 		return False
@@ -31,6 +33,7 @@ print("Servidor disponivel")
 while(True):
     bytesAdrPar = socketservidor.recvfrom(bufferSize)
     mensagem = bytesAdrPar[0]
+    mensagem = mensagem.decode("utf-8")
     adr = bytesAdrPar[1]
     clientMsg = "Message from Client:{}".format(mensagem)
     clientIP  = "Client IP Address:{}".format(adr)

@@ -9,8 +9,6 @@ import socket
 
 defPort = 8080
 
-def close(self):
-	return
 def out_tuple(self, topico, menssagem):    #Operacao de insercao no tuple space
   #Postagem de conteudo por topicos
   return
@@ -33,5 +31,5 @@ socketcliente = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 # Send to server using created UDP socket
 socketcliente.sendto(bytesenviar, endrServidor)
 mensagemservidor = socketcliente.recvfrom(bufferSize)
-msg = "Mensagem do SErvidor".format(mensagemservidor[0])
+msg = "Mensagem do Servidor".format(mensagemservidor[0])
 print(msg)

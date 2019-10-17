@@ -1,5 +1,6 @@
-#devemos utilizar semaforos pra fazer bloqueante??
-#criar um servidor http e fazer linda space com wrapper rest??
+#Autoras
+#Jessica Antunes - 619612
+#Leticia Amaral da Cunha - 628190
 
 import http.server
 import socketserver
@@ -7,7 +8,7 @@ import os
 import sys
 import socket
 import json
-from main import pack, unpack
+from main import pack
 
 porta   = 8080
 bufferSize  = 1024
@@ -50,7 +51,7 @@ def atividadeTS(comando,nome,topico,mensagem):
 # Cria o socket para comunicacao
 socketservidor = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 socketservidor.bind(('', porta))		# Une o cliente ao socket servidor
-#socketservidor.listen(5)
+
 print("Servidor disponivel")
 
 while(True):

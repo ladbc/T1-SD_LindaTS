@@ -8,7 +8,7 @@ import os
 import sys
 import socket
 import json
-from main import pack
+from main import unpack
 
 porta   = 8080
 bufferSize  = 1024

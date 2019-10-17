@@ -3,6 +3,9 @@
 
 import http.server
 import socketserver
+import os
+import sys
+import socket
 
 defPort = 8080
 
@@ -21,9 +24,22 @@ class Servidor(object):
 	def __init__(self, PORT = defPort):
 		super(Servidor, self).__init__()
 		self.arg = arg
+
+	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# bind the socket to a public host, and a well-known port
+serversocket.bind((socket.gethostname(), 80))
+# become a server socket
+serversocket.listen(5)
 		
 	def atividade(comando):		#Definição do recebimento de atividade no servidor pelo cliente???
-			pass	
+			if comando == 'out':
+						
+			if comando == 'in' :
+
+			if comando == 'rd' :
+				
+			else:
+				return False
 
 #Definição do cliente do micro-blog		
 class Cliente(object):
@@ -34,12 +50,12 @@ class Cliente(object):
 		
 	def out_tuple(comando, topico, menssagem):		#Operação de inserção no tuple space
 	#Postagem de conteúdo por tópicos
-		Servidor.atividade
+		
 
 	def in_tuple(comando, topico, menssagem):			#Operação de retirada no tuple space BLOQUEANTE
 	#Retirada de conteúdo somente por quem postou
 		
 
-	def rd_tuple(comando, topico, menssagem):			#Operação de cópia do template de tupla no tuple space BLOQUEANTE
+	def rd_tuple(comando, topico):			#Operação de cópia do template de tupla no tuple space BLOQUEANTE
 	#Obtenção de conteúdo por tópicos 
 	

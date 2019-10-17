@@ -1,22 +1,23 @@
-from LindaTupleSpace import Client
+import json
+# este metodo compacta a mensagem
+def pack(data: dict):
+    message_json = json.dumps(data)
+    message = message_json
 
-def main():
-  c = Client(('', 5050))
-  option = input("menu \n 1 - out \n 2 - in \n 3 - rd \n")
-  if option == '1':
-    print("Você escolheu enviar uma mensagem! \n Escreva as entradas \n")
-    topico = input("Tópico: ")
-    mensagem = input("Mensagem: ")
-    c.out_tuple(topico, mensagem)
-  elif option == '2':
-    print("Você escolheu apagar uma mensagem! \n Escreva as entradas \n")
-    topico = input("Tópico: ")
-    mensagem = input("Mensagem: ")
-    c.in_tuple(topico, mensagem)
-  elif option == '3':
-    print("Você escolheu enviar uma mensagem! \n Escreva as entradas \n")
-    topico = input("Tópico: ")
-    c.rd_tuple(topico)
+    return message.encode('utf-8')
 
-if __name__ == '__main__':
-  main()
+
+# este metodo descompacta a mensagem em um dicionario
+def unpack(data: str):
+    message_struct = {
+        'operacao': "",
+        'cliente': "",
+        'topico': "",
+        'menssagem': ""
+    }
+    try:
+        message_struct = json.loads(data)
+    except Exception as erro_msg:
+        print("Deu erro ao decompactar?: ", erro_msg)
+
+    return message_struct

@@ -1,5 +1,5 @@
 import json
-# este metodo compacta a mensagem
+#Este metodo compacta a mensagem
 def pack(data: dict):
     message_json = json.dumps(data)
     message = message_json
@@ -7,7 +7,7 @@ def pack(data: dict):
     return message.encode('utf-8')
 
 
-# este metodo descompacta a mensagem em um dicionario
+#Este metodo descompacta a mensagem em um dicionario
 def unpack(data: str):
     message_struct = {
         'operacao': "",

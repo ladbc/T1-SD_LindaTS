@@ -15,18 +15,36 @@ msgFromServer = "Cliente conectado ao servidor"
 bytesToSend = str.encode(msgFromServer)
 tuple_space = []
 
-def atividadeTS(comando): #Definicao do recebimento de atividade no servidor pelo cliente???
+def atividadeTS(comando,nome,topico,mensagem): #Definicao do recebimento de atividade no servidor pelo cliente???
 	if comando == 'out':
-		print('OLHA AI MENINA')
-		return		
-	if comando == 'in' :
-		print('oloco bixo, caiu no in')
-		return
-	if comando == 'rd' :
-		print('quer ler? vai ler um livro vagabunda')
-		return
-	else:
-		return False
+		tuple_space.append({'cliente': nome, 'topico': topico, 'message': mensagem})
+		response = "Mensagem criada"
+	elif comando == 'in' :
+		i = 0
+		while i < len(tuple_space):
+			if tuple_space[i]['topico'] == topico:
+				if tuple_space[i]['cliente'] == nome:
+					tuple_space.pop(i)
+					response = "Mensagem apagada"
+				else:
+					response = "Sem permissão"
+			else:
+				response = "Topico não encontrado"
+			i+=1
+	elif comando == 'rd' :
+		array_aux = []
+		i = 0
+		while i < len(tuple_space):
+			if tuple_space[i]['topico'] == topico:
+				array_aux.append(tuple_space[i])
+			i+=1
+		if len(array_aux) == 0:
+			response = "Sem mensagens nesse topico"
+		else:
+			response = array_aux
+	print(response)
+	print("tuple_space atul = ", tuple_space)
+	return response
 
 socketservidor = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)	# Cria o socket para comunicacao
 socketservidor.bind(('', porta))		# Une o cliente ao socket servidor
@@ -37,11 +55,12 @@ while(True):
     bytesAdrPar = socketservidor.recvfrom(bufferSize)
     struct = unpack(bytesAdrPar[0].decode('utf-8'))
     nome = struct['cliente']
-    mensagem = struct['operacao']
-    #mensagem = mensagem.decode("utf-8")
+    operacao = struct['operacao']
+    topico = struct['topico']
+    mensagem = struct['mensagem']
     adr = bytesAdrPar[1]
 
-    clientMsg = "Message from Client:{}".format(mensagem)
+    clientMsg = "Message from Client:{}".format(operacao)
     clientIP  = "Client IP Address:{}".format(adr)
-    atividadeTS(mensagem)
-    socketservidor.sendto(bytesToSend, adr)
+    response = atividadeTS(operacao,nome,topico,mensagem)
+    socketservidor.sendto(str.encode(response), adr)

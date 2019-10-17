@@ -15,7 +15,8 @@ msgFromServer = "Cliente conectado ao servidor"
 bytesToSend = str.encode(msgFromServer)
 tuple_space = []
 
-def atividadeTS(comando,nome,topico,mensagem): #Definicao do recebimento de atividade no servidor pelo cliente???
+#Definicao da atividade a ser realizada do cliente pelo servidor
+def atividadeTS(comando,nome,topico,mensagem):
 	if comando == 'out':
 		tuple_space.append({'cliente': nome, 'topico': topico, 'mensagem': mensagem})
 		response = "Mensagem criada"
@@ -46,7 +47,8 @@ def atividadeTS(comando,nome,topico,mensagem): #Definicao do recebimento de ativ
 	print("tuple_space atul = ", tuple_space)
 	return response
 
-socketservidor = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)	# Cria o socket para comunicacao
+# Cria o socket para comunicacao
+socketservidor = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 socketservidor.bind(('', porta))		# Une o cliente ao socket servidor
 #socketservidor.listen(5)
 print("Servidor disponivel")

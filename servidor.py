@@ -17,7 +17,7 @@ tuple_space = []
 
 def atividadeTS(comando,nome,topico,mensagem): #Definicao do recebimento de atividade no servidor pelo cliente???
 	if comando == 'out':
-		tuple_space.append({'cliente': nome, 'topico': topico, 'message': mensagem})
+		tuple_space.append({'cliente': nome, 'topico': topico, 'mensagem': mensagem})
 		response = "Mensagem criada"
 	elif comando == 'in' :
 		i = 0
@@ -63,4 +63,14 @@ while(True):
     clientMsg = "Message from Client:{}".format(operacao)
     clientIP  = "Client IP Address:{}".format(adr)
     response = atividadeTS(operacao,nome,topico,mensagem)
-    socketservidor.sendto(str.encode(response), adr)
+    
+    if type(response) is list:
+    	response_aux = "Mensagens encontradas no topico " + topico + ":\n"
+    	i = 0
+    	while i < len(response):
+    		response_aux = response_aux + response[i]['mensagem'] + "\n"
+    		i +=1
+    else:
+    	response_aux = response
+
+    socketservidor.sendto(str.encode(response_aux), adr)

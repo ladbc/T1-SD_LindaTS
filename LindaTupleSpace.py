@@ -7,7 +7,7 @@ import os
 import sys
 import socket
 import json
-from main import pack, unpack
+from main import pack
 
 defPort = 8080
 
